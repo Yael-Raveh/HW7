@@ -1,0 +1,54 @@
+import numpy,random,math
+from matplotlib import pyplot as plt
+power = range(1,7)
+err = numpy.zeros(len(power))
+for q in range(len(power)):
+    N = 10**q
+    count = 0
+    for i in range(N):
+        x = random.random()
+        y = random.random()
+        if x**2+y**2<1:
+            count += 1
+    pi = 4*float(count)/float(N)
+    err[q] = math.log10(numpy.absolute(math.pi-pi)/math.pi)
+plt.figure(1)
+plt.plot(power,err,'*')
+plt.xlabel('log(N)', fontsize=16)
+plt.ylabel('log(relative err)', fontsize=16)
+plt.title('A Monte-Carlo calculation of $\\pi$', fontsize=16)
+plt.show()
+
+import numpy,math
+import matplotlib.pyplot as plt
+xtot = 1.0
+ytot = 1.0
+power = range(1,7)
+err = numpy.zeros(len(power))
+epsilon = 0.00001
+def inte(x,y):
+    return math.exp(-y**2)/(k+y**2)
+for i in range(len(power)):
+    N = 10**power[i]
+    h = xtot/N
+
+
+n = numpy.linspace(1,18,18)
+In = 0
+Inone = h*(voigt(a)+voigt(b))/2
+diff = Inone-0.5*In
+Invec = [Inone]
+i = 1
+while (Inone-In)/Inone > epsilon:
+    print((Inone-In)/Inone)
+    In = Inone
+    h /= 2
+    diff += h*voigt(a+(2*i-1)*h)
+    Inone = diff+0.5*In
+    i += 1
+    Invec.append(Invec)
+plt.figure(1)
+plt.plot(n, numpy.array(Invec),'*')
+plt.xlabel('n', fontsize=16)
+plt.ylabel('I(h$_n$)', fontsize=16)
+plt.show()
